@@ -42,7 +42,7 @@ void test_duration()
     alias = twoseconds / 2;    // 这都行
     cout << "1s has " << alias.count() << " milliseconds" << endl;
     alias = twoseconds / 4;    // 这都行，结果是错误的
-                               /*估计也就是个先乘后除，先除后乘的问题*/
+    /*估计也就是个先乘后除，先除后乘的问题*/
     cout << "0.5s has " << alias.count() << " milliseconds" << endl;
     {
         // 自定义时间间隔：半秒
@@ -64,7 +64,7 @@ void test_duration()
     }
 
     cout << "sleep 2s ..." << endl;
-    this_thread::sleep_for(twoseconds);
+    //this_thread::sleep_for(twoseconds);
     this_thread::sleep_for(2s); //TODO  这都行啊，这是如何实现的？
     cout << "END" << endl;
 
