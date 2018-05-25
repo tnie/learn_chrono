@@ -6,7 +6,7 @@ class Blob
 {
 public:
     Blob() {};
-    ~Blob() {};
+    ~Blob();
 
     int attach(const Observer* ob);
     int notify();
@@ -21,7 +21,7 @@ class Observer
 {
 public:
     Observer(const Blob* m);
-    ~Observer() {};
+    ~Observer();
 
     void update() const;
 

@@ -2,6 +2,7 @@
 #include <iostream>
 
 using namespace std;
+Blob::~Blob() { cout << "blob dctor" << endl; }
 int Blob::attach(const Observer * ob)
 {
     m_observers.push_back(ob);
@@ -32,6 +33,11 @@ int Blob::status() const
 Observer::Observer(const Blob * m) :m_blob(m)
 {
 
+}
+
+Observer::~Observer()
+{
+    cout << "observer dctor" << endl;
 }
 
 void Observer::update() const
