@@ -2,7 +2,7 @@
 #include <iostream>
 
 using namespace std;
-inline int Blob::attach(const Observer & ob)
+inline int Blob::attach(const Observer * ob)
 {
     m_observers.push_back(ob);
     return m_observers.size();
@@ -12,7 +12,7 @@ inline int Blob::notify()
 {
     for each (const auto var in m_observers)
     {
-        var.update();
+        var->update();
     }
     return m_observers.size();
 }
@@ -28,12 +28,12 @@ inline int Blob::status() const
     return m_status;
 }
 
-inline Observer::Observer(const Blob & m) :m_blob(m)
+inline Observer::Observer(const Blob * m) :m_blob(m)
 {
 
 }
 
 inline void Observer::update() const
 {
-    cout << "status value: " << m_blob.status() << endl;
+    cout << "status value: " << m_blob->status() << endl;
 }
