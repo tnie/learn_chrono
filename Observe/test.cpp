@@ -30,17 +30,17 @@ int Blob::status() const
     return m_status;
 }
 
-Observer::Observer(const Blob * m) :m_blob(m)
+Observer::Observer(const Blob* m, const std::string& name) :m_blob(m), m_name(name)
 {
 
 }
 
 Observer::~Observer()
 {
-    cout << "observer dctor" << endl;
+    cout << "observer[" << m_name << "] dctor" << endl;
 }
 
 void Observer::update() const
 {
-    cout << m_prefix << "status value: " << m_blob->status() << endl;
+    cout << "[" << m_name <<"]" << "status value: " << m_blob->status() << endl;
 }

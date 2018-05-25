@@ -20,12 +20,12 @@ private:
 class Observer
 {
 public:
-    Observer(const Blob* m);
+    Observer(const Blob* m, const std::string& name);
     ~Observer();
 
     void update() const;
 
 private:
-    const std::string m_prefix = "##";
+    const std::string m_name;
     const Blob* m_blob;
 };
