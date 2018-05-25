@@ -13,6 +13,7 @@ int main()
         pb->change(20);
         delete po;
     }
+    pb->change(30);
     delete po;
 
     return 0;

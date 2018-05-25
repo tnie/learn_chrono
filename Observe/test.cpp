@@ -42,5 +42,6 @@ Observer::~Observer()
 
 void Observer::update() const
 {
-    cout << "[" << m_name <<"]" << "status value: " << m_blob->status() << endl;
+    cout << "[" << m_name << "]";
+    cout << "status value: " << m_blob->status() << endl;
 }
