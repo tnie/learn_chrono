@@ -8,22 +8,23 @@ int Blob::attach(const Observer * ob)
     return m_observers.size();
 }
 
-inline int Blob::notify()
+int Blob::notify()
 {
     for each (const auto var in m_observers)
     {
+        // TODO 对象已销毁
         var->update();
     }
     return m_observers.size();
 }
 
-inline int Blob::change(int c)
+int Blob::change(int c)
 {
     m_status = c;
     return notify();
 }
 
-inline int Blob::status() const
+int Blob::status() const
 {
     return m_status;
 }
@@ -33,7 +34,7 @@ Observer::Observer(const Blob * m) :m_blob(m)
 
 }
 
-inline void Observer::update() const
+void Observer::update() const
 {
     cout << "status value: " << m_blob->status() << endl;
 }
