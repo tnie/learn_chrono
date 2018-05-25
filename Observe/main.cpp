@@ -6,5 +6,6 @@ int main()
     blob.attach(&Observer(&blob));
     blob.attach(&Observer(&blob));
     blob.attach(&Observer(&blob));
+    blob.change(10);
     return 0;
 }
