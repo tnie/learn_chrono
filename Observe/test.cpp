@@ -2,7 +2,7 @@
 #include <iostream>
 
 using namespace std;
-inline int Blob::attach(const Observer * ob)
+int Blob::attach(const Observer * ob)
 {
     m_observers.push_back(ob);
     return m_observers.size();
@@ -28,7 +28,7 @@ inline int Blob::status() const
     return m_status;
 }
 
-inline Observer::Observer(const Blob * m) :m_blob(m)
+Observer::Observer(const Blob * m) :m_blob(m)
 {
 
 }
