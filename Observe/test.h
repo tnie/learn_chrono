@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-
+#include <string>
 class Observer;
 class Blob
 {
@@ -26,5 +26,6 @@ public:
     void update() const;
 
 private:
+    const std::string m_prefix = "##";
     const Blob* m_blob;
 };

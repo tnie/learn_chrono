@@ -36,5 +36,5 @@ Observer::Observer(const Blob * m) :m_blob(m)
 
 void Observer::update() const
 {
-    cout << "status value: " << m_blob->status() << endl;
+    cout << m_prefix << "status value: " << m_blob->status() << endl;
 }

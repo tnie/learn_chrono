@@ -3,7 +3,8 @@
 int main()
 {
     Blob blob;
-    blob.attach(&Observer(&blob));
+    Observer ob1(&blob);
+    blob.attach(&ob1);
     blob.attach(&Observer(&blob));
     blob.attach(&Observer(&blob));
     blob.change(10);
