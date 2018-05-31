@@ -1,8 +1,9 @@
 #include "Person.h"
+#include "PersonImpl.h"
 
 
 
-Person::Person()
+Person::Person():m_pImpl(std::make_shared<PersonImpl>())
 {
 }
 

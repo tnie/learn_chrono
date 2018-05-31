@@ -149,12 +149,14 @@
     <ClInclude Include="Address.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Person.h" />
+    <ClInclude Include="PersonImpl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Address.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="PersonImpl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,8 @@
 #pragma once
-#include <string>
-#include "Date.h"
-#include "Address.h"
+#include <memory>
+
+class PersonImpl;
+
 class Person
 {
 public:
@@ -9,8 +10,6 @@ public:
     ~Person();
 
 private:
-    std::string m_name;
-    Date m_birthday;
-    Address m_address;
+    std::shared_ptr<PersonImpl> m_pImpl;
 };
 
