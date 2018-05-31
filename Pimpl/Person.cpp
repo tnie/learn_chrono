@@ -6,31 +6,21 @@
 class Person::PersonImpl
 {
 public:
-    PersonImpl();
-    ~PersonImpl();
+    /*PersonImpl();
+    ~PersonImpl();*/
 private:
     std::string m_name;
     Date m_birthday;
     Address m_address;
 };
 
-Person::PersonImpl::PersonImpl()
-{
-}
-
-
-Person::PersonImpl::~PersonImpl()
-{
-}
-
-
 Person::Person():m_pImpl(std::make_shared<PersonImpl>())
 {
 }
 
 
-Person::~Person()
-{
-}
+//Person::~Person()
+//{
+//}
 
 

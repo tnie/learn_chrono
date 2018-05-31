@@ -5,7 +5,7 @@ class Person
 {
 public:
     Person();
-    ~Person();
+    //~Person();
 
 private:
     class PersonImpl;
