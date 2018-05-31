@@ -7,6 +7,6 @@ public:
 private:
     unsigned m_year;
     //unsigned m_month;
-    unsigned m_date;
+    //unsigned m_date;
 };
 

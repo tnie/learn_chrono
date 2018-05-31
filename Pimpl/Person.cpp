@@ -1,6 +1,27 @@
 #include "Person.h"
-#include "PersonImpl.h"
+#include <string>
+#include "Date.h"
+#include "Address.h"
 
+class Person::PersonImpl
+{
+public:
+    PersonImpl();
+    ~PersonImpl();
+private:
+    std::string m_name;
+    Date m_birthday;
+    Address m_address;
+};
+
+Person::PersonImpl::PersonImpl()
+{
+}
+
+
+Person::PersonImpl::~PersonImpl()
+{
+}
 
 
 Person::Person():m_pImpl(std::make_shared<PersonImpl>())
