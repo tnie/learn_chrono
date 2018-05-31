@@ -5,7 +5,8 @@ class Person
 {
 public:
     Person();
-    //~Person();
+    ~Person();
+    //~Person() = default;  // error C2338 too:
 
 private:
     class PersonImpl;

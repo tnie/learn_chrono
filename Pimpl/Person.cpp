@@ -3,6 +3,8 @@
 #include "Date.h"
 #include "Address.h"
 
+//Person::~Person() = default;  // 也可以
+
 class Person::PersonImpl
 {
 public:
@@ -19,8 +21,6 @@ Person::Person():m_pImpl(std::make_unique<PersonImpl>())
 }
 
 
-//Person::~Person()
-//{
-//}
+Person::~Person() = default;  // 也可以
 
 
