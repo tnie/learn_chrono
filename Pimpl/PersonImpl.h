@@ -2,7 +2,9 @@
 #include <string>
 #include "Date.h"
 #include "Address.h"
-class PersonImpl
+#include "Person.h"
+
+class Person::PersonImpl
 {
 public:
     PersonImpl();

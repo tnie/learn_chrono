@@ -1,8 +1,6 @@
 #pragma once
 #include <memory>
 
-class PersonImpl;
-
 class Person
 {
 public:
@@ -10,6 +8,7 @@ public:
     ~Person();
 
 private:
+    class PersonImpl;
     std::shared_ptr<PersonImpl> m_pImpl;
 };
 

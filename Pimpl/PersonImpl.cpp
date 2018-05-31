@@ -2,11 +2,11 @@
 
 
 
-PersonImpl::PersonImpl()
+Person::PersonImpl::PersonImpl()
 {
 }
 
 
-PersonImpl::~PersonImpl()
+Person::PersonImpl::~PersonImpl()
 {
 }
