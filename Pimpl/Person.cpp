@@ -14,7 +14,7 @@ private:
     Address m_address;
 };
 
-Person::Person():m_pImpl(std::make_shared<PersonImpl>())
+Person::Person():m_pImpl(std::make_unique<PersonImpl>())
 {
 }
 

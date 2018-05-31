@@ -9,6 +9,6 @@ public:
 
 private:
     class PersonImpl;
-    std::shared_ptr<PersonImpl> m_pImpl;
+    std::unique_ptr<PersonImpl> m_pImpl;
 };
 
