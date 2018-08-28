@@ -15,8 +15,8 @@ int main()
     test_duration();
     auto str = R"(
 *****************************************************************************
-duration µÄ¸ÅÄî½ÏÎª¶ÀÁ¢£¬µ« time_t ºÍ clock Ôò»¥ÏàÒıÓÃ£¬ÄÑÒÔ»®ÇåÃ÷ÏÔµÄ±ß½ç¡£
-    duration Ö»ÒªÇø·ÖÊıÖµ¡¢µ¥Î»¾ÍºÜÈİÒ×Àí½â¡£
+duration çš„æ¦‚å¿µè¾ƒä¸ºç‹¬ç«‹ï¼Œä½† time_point å’Œ clock åˆ™äº’ç›¸å¼•ç”¨ï¼Œéš¾ä»¥åˆ’æ¸…æ˜æ˜¾çš„è¾¹ç•Œã€‚
+    duration åªè¦åŒºåˆ†æ•°å€¼ã€å•ä½å°±å¾ˆå®¹æ˜“ç†è§£ã€‚
 *****************************************************************************
 )";
     cout << str << endl;
@@ -29,27 +29,27 @@ void test_duration()
 {
     auto twoseconds = chrono::duration<int>(2);
     //auto twoseconds = chrono::seconds(2);
-    chrono::milliseconds alias = twoseconds;    // Õâ¶¼ĞĞ-¿½±´¹¹Ôì¿ÉÒÔ
+    chrono::milliseconds alias = twoseconds;    // è¿™éƒ½è¡Œ-æ‹·è´æ„é€ å¯ä»¥
     {
-        alias = twoseconds;     // µÍ¾«¶È¸³Öµ¸ø¸ß¾«¶È¿ÉÒÔ
-        //twoseconds = alias;     // ¸ß¾«¶È¸³Öµ¸øµÍ¾«¶È±ØĞëÏÔÊ½×ª»»
+        alias = twoseconds;     // ä½ç²¾åº¦èµ‹å€¼ç»™é«˜ç²¾åº¦å¯ä»¥
+        //twoseconds = alias;     // é«˜ç²¾åº¦èµ‹å€¼ç»™ä½ç²¾åº¦å¿…é¡»æ˜¾å¼è½¬æ¢
     }
 
     cout << "2s has " << twoseconds.count() << " seconds" << endl;
     cout << "2s has " << alias.count() << " milliseconds" << endl;
-    alias = twoseconds * 2;    // Õâ¶¼ĞĞ
+    alias = twoseconds * 2;    // è¿™éƒ½è¡Œ
     cout << "4s has " << alias.count() << " milliseconds" << endl;
-    alias = twoseconds / 2;    // Õâ¶¼ĞĞ
+    alias = twoseconds / 2;    // è¿™éƒ½è¡Œ
     cout << "1s has " << alias.count() << " milliseconds" << endl;
-    alias = twoseconds / 4;    // Õâ¶¼ĞĞ£¬½á¹ûÊÇ´íÎóµÄ
-    /*¹À¼ÆÒ²¾ÍÊÇ¸öÏÈ³Ëºó³ı£¬ÏÈ³ıºó³ËµÄÎÊÌâ*/
+    alias = twoseconds / 4;    // è¿™éƒ½è¡Œï¼Œç»“æœæ˜¯é”™è¯¯çš„
+    /*ä¼°è®¡ä¹Ÿå°±æ˜¯ä¸ªå…ˆä¹˜åé™¤ï¼Œå…ˆé™¤åä¹˜çš„é—®é¢˜*/
     cout << "0.5s has " << alias.count() << " milliseconds" << endl;
     {
-        // ×Ô¶¨ÒåÊ±¼ä¼ä¸ô£º°ëÃë
+        // è‡ªå®šä¹‰æ—¶é—´é—´éš”ï¼šåŠç§’
         typedef chrono::duration<double, ratio<1, 2>> halfseconds;
-        auto var = halfseconds(2.5);    // 1.25 Ãë
+        auto var = halfseconds(2.5);    // 1.25 ç§’
         cout << "1.25s has " << var.count() << " halfseconds" << endl;
-        //alias = var; // ĞèÒªÏÔÊ¾×ª»»
+        //alias = var; // éœ€è¦æ˜¾ç¤ºè½¬æ¢
         alias = chrono::duration_cast<chrono::milliseconds> (var);
         cout << "1.25s has " << alias.count() << " milliseconds" << endl;
 
@@ -59,13 +59,13 @@ void test_duration()
         cout << "diff(milli) is: " << diff.count() << endl;
     }
     {
-        chrono::seconds diff = chrono::duration_cast<chrono::seconds>(alias - twoseconds);      // ±ØĞëÏÔÊ½×ª»»
+        chrono::seconds diff = chrono::duration_cast<chrono::seconds>(alias - twoseconds);      // å¿…é¡»æ˜¾å¼è½¬æ¢
         cout << "diff(seconds) is: " << diff.count() << endl;
     }
 
     cout << "sleep 2s ..." << endl;
     //this_thread::sleep_for(twoseconds);
-    this_thread::sleep_for(2s); //TODO  Õâ¶¼ĞĞ°¡£¬ÕâÊÇÈçºÎÊµÏÖµÄ£¿
+    this_thread::sleep_for(2s); //TODO  è¿™éƒ½è¡Œå•Šï¼Œè¿™æ˜¯å¦‚ä½•å®ç°çš„ï¼Ÿ
     cout << "END" << endl;
 
 }
@@ -77,14 +77,14 @@ void test_time_point_clock()
         this_thread::sleep_for(2s);
         auto t2 = chrono::steady_clock::now();
         chrono::steady_clock::duration diff = t2 - t1;
-        cout << setw(20) << "diff(nano) is: " << diff.count() << endl;   // 2s ²¢²»ÊÇÑÏ¸ñÒâÒåÉÏµÄ 2*10^9 ÄÉÃë
-        cout << setw(20) << "now(nano) is: " << t2.time_since_epoch().count() << endl;  //  TODO steady_clock ²»ÊÇ´Ó 1970 ÄêËãÆğ£¿
-        chrono::steady_clock;   // Ã»ÓĞ to_time_t()/fromw_time_t()
+        cout << setw(20) << "diff(nano) is: " << diff.count() << endl;   // 2s å¹¶ä¸æ˜¯ä¸¥æ ¼æ„ä¹‰ä¸Šçš„ 2*10^9 çº³ç§’
+        cout << setw(20) << "now(nano) is: " << t2.time_since_epoch().count() << endl;  //  TODO steady_clock ä¸æ˜¯ä» 1970 å¹´ç®—èµ·ï¼Ÿ
+        chrono::steady_clock;   // æ²¡æœ‰ to_time_t()/fromw_time_t()
         chrono::system_clock::now();
     }
 
     {
-        auto t3 = chrono::system_clock::now();  // ²é¿´µ×²ãÊµÏÖ£¬·¢ÏÖ system_clock ±È steady_clock ¾«¶ÈµÍ100 ±¶
+        auto t3 = chrono::system_clock::now();  // æŸ¥çœ‹åº•å±‚å®ç°ï¼Œå‘ç° system_clock æ¯” steady_clock ç²¾åº¦ä½100 å€
         cout << setw(20) << "now(nano*100) is: " << t3.time_since_epoch().count() << endl;
         cout << setw(20) << "now(time_t) is: " << chrono::system_clock::to_time_t(t3) << endl;
 
@@ -93,7 +93,7 @@ void test_time_point_clock()
             //days_type days = t3.time_since_epoch();     // TODO why?
             days_type days = chrono::duration_cast<days_type>(t3.time_since_epoch());
             cout << setw(20) << "now(days) is: " << days.count() << endl;
-            auto days_point = chrono::time_point_cast<days_type>(t3);   // ÓëÉÏÊöµÈ¼Û
+            auto days_point = chrono::time_point_cast<days_type>(t3);   // ä¸ä¸Šè¿°ç­‰ä»·
             cout << setw(20) << "now(days) is: " << days_point.time_since_epoch().count() << endl;
         }
 
