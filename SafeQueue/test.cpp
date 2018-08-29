@@ -9,6 +9,8 @@ using namespace std;
 
 threadsafe_queue<string> sq;
 
+// len 为不计末尾 \0 的字符串长度
+// 申请空间应大于 len
 void gen_random(char *s, const int len) {
     static const char alphanum[] =
         "0123456789"
@@ -35,10 +37,10 @@ void fun()
 
 void fun2(int x)
 {
-    while (true)
+    //while (true)
     {
         char str[10];
-        gen_random(str, 10);
+        gen_random(str, 9); // 10 -1
         sq.push(str);
         this_thread::sleep_for(chrono::seconds(x));
     }
@@ -53,6 +55,10 @@ int main()
         vt.push_back(thread(fun2, i));
     }
     ///////////
+    for (size_t i = 0; i < vt.size(); i++)
+    {
+        vt.at(i).join();
+    }
     tt.join();
 
     return 0;
