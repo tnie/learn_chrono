@@ -7,7 +7,7 @@
 
 using namespace std;
 
-SafeQueue<string> sq;
+threadsafe_queue<string> sq;
 
 void gen_random(char *s, const int len) {
     static const char alphanum[] =
@@ -26,8 +26,8 @@ void fun()
 {
     while (true)
     {
-        auto item = sq.dequeue();
-        cout << item << endl;
+        auto item = sq.wait_and_pop();
+        cout << *item << endl;
         this_thread::sleep_for(200ms);
     }
 
@@ -39,7 +39,7 @@ void fun2(int x)
     {
         char str[10];
         gen_random(str, 10);
-        sq.enqueue(str);
+        sq.push(str);
         this_thread::sleep_for(chrono::seconds(x));
     }
 }

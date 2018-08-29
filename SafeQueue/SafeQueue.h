@@ -11,6 +11,8 @@ template <class T>
 class threadsafe_queue
 {
 public:
+    // P236 编译器只有在发现类不包含任何构造函数的情况下，才会替我们生成一个默认的构造函数
+    threadsafe_queue() = default;
     threadsafe_queue(const threadsafe_queue & rhs)
     {
         std::lock_guard<std::mutex> lock(rhs.m);
