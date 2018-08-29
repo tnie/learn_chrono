@@ -8,6 +8,7 @@
 using namespace std;
 
 threadsafe_queue<string> sq;
+volatile bool run = false;
 
 // len 为不计末尾 \0 的字符串长度
 // 申请空间应大于 len
@@ -26,7 +27,8 @@ void gen_random(char *s, const int len) {
 
 void fun()
 {
-    while (true)
+    run = true;
+    while (run)
     {
         auto item = sq.wait_and_pop();
         cout << *item << endl;
@@ -59,6 +61,8 @@ int main()
     {
         vt.at(i).join();
     }
+    run = false;
+    sq.push("");
     tt.join();
 
     return 0;

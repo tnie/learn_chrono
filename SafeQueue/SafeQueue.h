@@ -67,7 +67,7 @@ std::shared_ptr<T> threadsafe_queue<T>::wait_and_pop()
     std::unique_lock<std::mutex> lock(m);
     // release lock as long as the wait and reaquire it afterwards.
     c.wait(lock, [this]() {
-        return q.empty() == false;  });     // TODO 阻塞时如何退出
+        return q.empty() == false;  });
     auto ptr = std::make_shared<T>(q.front());
     q.pop();
     return ptr;
