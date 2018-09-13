@@ -20,6 +20,11 @@ Person::Person():m_pImpl(std::make_unique<PersonImpl>())
 {
 }
 
+Person::Person(const Person & rhs)
+{
+    *m_pImpl = *rhs.m_pImpl;
+}
+
 
 Person::~Person() = default;  // р╡©ирт
 
