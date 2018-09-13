@@ -29,8 +29,8 @@ Person::Person():m_pImpl(std::make_unique<PersonImpl>())
 Person::Person(Person && rhs)
     :m_pImpl(std::move(rhs.m_pImpl))
 {
-    // std::move 并不能移动任何东西，它唯一的功能是将一个左值强制转化为右值引用，继而可以通过右值引用使用该值，以用于移动语义。
-    // 从实现上讲，std::move 基本等同于一个类型转换：static_cast<T&&>(lvalue);
+    // 右值引用变量的名称是左值，而若要绑定到接受右值引用参数的重载，就必须转换到亡值，
+    // 此乃移动构造函数与移动赋值运算符典型地使用 std::move 的原因
 }
 
 Person::~Person() = default;  // 也可以
