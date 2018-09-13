@@ -30,7 +30,7 @@ Person::Person(Person && rhs)
     :m_pImpl(std::move(rhs.m_pImpl))
 {
     // 右值引用变量的名称是左值，而若要绑定到接受右值引用参数的重载，就必须转换到亡值，
-    // 此乃移动构造函数与移动赋值运算符典型地使用 std::move 的原因
+    // 此乃移动构造函数（与移动赋值运算符）典型地使用 std::move 的原因
 }
 
 Person::~Person() = default;  // 也可以
