@@ -5,7 +5,8 @@ class Person
 {
 public:
     Person();
-    Person(const Person& rhs);
+    //Person(const Person& rhs);
+    Person(Person && rhs);
     ~Person();
     //~Person() = default;  // error C2338 too:
 
