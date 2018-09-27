@@ -41,5 +41,15 @@ private:
 > 
 > Additionally, such a bug also occurs for non-const objects that don't have move constructors, 
 
+# 实现 pImpl 推荐使用 `shared_ptr`，而非 `unique_ptr` 
+
+使用 `unique_ptr` 智能指针需要处理较多的脏活（在 commit message 中依次记录了）：
+
+- 需要分别在头文件和源文件**显式声明、定义析构**；
+- 如有需要，需显式声明**拷贝构造**、赋值（因为成员变量 unique_ptr 不支持拷贝构造和赋值）；
+- 如有需要，**移动构造**也要显式定义；
+
+但使用 `shared_ptr`，上述提到的三点可以全然不理。
+
 [1]:https://blog.csdn.net/big_yellow_duck/article/details/52351729
 [2]:https://zh.cppreference.com/w/cpp/language/value_category
