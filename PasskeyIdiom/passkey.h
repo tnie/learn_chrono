@@ -5,8 +5,7 @@ class Passkey {
 private:  // CAN'T BE public
 //public:
     friend T;
-    Passkey() = default;
-    //Passkey() {};
-    Passkey(const Passkey&) = default;
+    Passkey() {};
+    Passkey(const Passkey&) {};
     Passkey& operator=(const Passkey&) = delete;
 };
