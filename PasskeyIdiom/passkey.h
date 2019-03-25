@@ -2,7 +2,8 @@
 
 template<typename T>
 class Passkey {
-private:
+private:  // CAN'T BE public
+//public:
     friend T;
     Passkey() = default;
     Passkey(const Passkey&) = default;

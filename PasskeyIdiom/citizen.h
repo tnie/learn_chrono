@@ -5,7 +5,7 @@
 using std::string;
 
 class Government;
-class Citizen {
+class Citizen { // 它是不能操作 passkey 的
 public:
     string getName() const;
     string getSocialSecurityNumber(Passkey<Government>) const;
