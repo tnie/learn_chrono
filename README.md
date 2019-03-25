@@ -31,3 +31,9 @@ int main()
     return 0;
 }
 ```
+
+# 更多 
+
+expose particular members to given callers.
+
+除了前文提到的，PassKey idiom，还有 [Attorney-Client idiom](http://www.drdobbs.com/friendship-and-the-attorney-client-idiom/184402053)  律师-客户惯用法
