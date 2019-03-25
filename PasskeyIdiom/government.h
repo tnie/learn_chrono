@@ -13,5 +13,5 @@ private:
 
 void Government::printCitizenInfo(const Citizen &citizen) const {
     cout << "Citizen Name: " << citizen.getName() << endl;
-    cout << "Citizen SSN: " << citizen.getSocialSecurityNumber() << endl; // COMPILE ERROR
+    cout << "Citizen SSN: " << citizen.getSocialSecurityNumber(Passkey<Government>()) << endl; // THIS COMPILES
 }

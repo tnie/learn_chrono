@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="citizen.h" />
     <ClInclude Include="government.h" />
+    <ClInclude Include="passkey.h" />
     <ClInclude Include="spy.h" />
   </ItemGroup>
   <ItemGroup>
