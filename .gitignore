@@ -1,0 +1,12 @@
+Debug
+Release
+.vs
+bin
+obj
+*.VC.db
+*.VC.opendb
+*.dat
+/tar
+/testlog
+*.user
+/InvokeSDLl/*.txt
