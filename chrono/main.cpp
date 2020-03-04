@@ -68,14 +68,29 @@ TEST(DURATION, HalfSecond)
     ASSERT_EQ(alias.count(), 1250) << "1.25s has " << alias.count() << " milliseconds";
 }
 
-
-void test_duration()
+namespace il
 {
-    cout << "sleep 2s ..." << endl;
-    //this_thread::sleep_for(twoseconds);
-    this_thread::sleep_for(2s); //TODO  这都行啊，这是如何实现的？
-    cout << "END" << endl;
+    // 自定义时间间隔：半秒
+    typedef chrono::duration<double, ratio<1, 2>> halfseconds;
+    inline constexpr halfseconds operator "" hs(long double x)
+    {
+        return halfseconds(x);
+    }
+}
 
+TEST(DURATION, Literals)
+{
+    auto twoseconds = 2s;
+    auto alias = chrono::duration_cast<chrono::milliseconds>(twoseconds / 4);
+    ASSERT_EQ(alias.count(), 0) << "0.5s has " << alias.count() << " milliseconds.";
+
+    auto ts = 2.s;     //chrono::duration<double>(2);
+    alias = chrono::duration_cast<chrono::milliseconds>(ts / 4);
+    ASSERT_EQ(alias.count(), 500) << "0.5s has " << alias.count() << " milliseconds.";
+
+    using namespace il;
+    auto var = 2.5hs;    // 1.25 秒
+    ASSERT_EQ(var.count(), 2.5) << "1.25s has " << var.count() << " halfseconds";
 }
 
 void test_time_point_clock()
