@@ -8,8 +8,6 @@
 using namespace std;
 //using namespace chrono;
 
-void test_time_point_clock();
-
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
@@ -20,7 +18,6 @@ duration 的概念较为独立，但 time_point 和 clock 则互相引用，难�
 *****************************************************************************
 )";
     cout << str << endl;
-    test_time_point_clock();
     return RUN_ALL_TESTS();
 }
 
@@ -93,33 +90,31 @@ TEST(DURATION, Literals)
     ASSERT_EQ(var.count(), 2.5) << "1.25s has " << var.count() << " halfseconds";
 }
 
-void test_time_point_clock()
+TEST(TIME_POINT_CLOCK, Sleep)
 {
-    {
-        chrono::time_point<chrono::steady_clock> t1 = chrono::steady_clock::now();
-        this_thread::sleep_for(2s);
-        auto t2 = chrono::steady_clock::now();
-        chrono::steady_clock::duration diff = t2 - t1;
-        cout << setw(20) << "diff(nano) is: " << diff.count() << endl;   // 2s 并不是严格意义上的 2*10^9 纳秒
-        cout << setw(20) << "now(nano) is: " << t2.time_since_epoch().count() << endl;  //  TODO steady_clock 不是从 1970 年算起？
-        chrono::steady_clock;   // 没有 to_time_t()/fromw_time_t()
-        chrono::system_clock::now();
-    }
+    chrono::time_point<chrono::steady_clock> t1 = chrono::steady_clock::now();
+    this_thread::sleep_for(2s);
+    auto t2 = chrono::steady_clock::now();
+    chrono::steady_clock::duration diff = t2 - t1;
+    ASSERT_NE(diff.count(), 2e9) << "diff(nano) is: " << diff.count();  // 2s 并不是严格意义上的 2*10^9 纳秒
 
-    {
-        auto t3 = chrono::system_clock::now();  // 查看底层实现，发现 system_clock 比 steady_clock 精度低100 倍
-        cout << setw(20) << "now(nano*100) is: " << t3.time_since_epoch().count() << endl;
-        cout << setw(20) << "now(time_t) is: " << chrono::system_clock::to_time_t(t3) << endl;
-
-        {
-            typedef chrono::duration<int, ratio<60 * 60 * 24>> days_type;
-            //days_type days = t3.time_since_epoch();     // TODO why?
-            days_type days = chrono::duration_cast<days_type>(t3.time_since_epoch());
-            cout << setw(20) << "now(days) is: " << days.count() << endl;
-            auto days_point = chrono::time_point_cast<days_type>(t3);   // 与上述等价
-            cout << setw(20) << "now(days) is: " << days_point.time_since_epoch().count() << endl;
-        }
-
-    }
-
+    cout << setw(20) << "now(nano) is: " << t2.time_since_epoch().count() << endl;  //  TODO steady_clock 不是从 1970 年算起？
+    chrono::steady_clock;   // 没有 to_time_t()/fromw_time_t()
+    chrono::system_clock::now();
 }
+
+TEST(TIME_POINT_CLOCK, Epoch)
+{
+    auto t3 = chrono::system_clock::now();  // 查看底层实现，发现 system_clock 比 steady_clock 精度低100 倍
+    cout << setw(20) << "now(/nano*100) is: " << t3.time_since_epoch().count() << endl;
+    cout << setw(20) << "now(time_t/s) is: " << chrono::system_clock::to_time_t(t3) << endl;
+
+    typedef chrono::duration<int, ratio<60 * 60 * 24>> days_type;
+    //days_type days = t3.time_since_epoch();     // 降低精度需要显式转换
+    days_type days = chrono::duration_cast<days_type>(t3.time_since_epoch());
+    cout << setw(20) << "now(days) is: " << days.count() << endl;
+    auto days_point = chrono::time_point_cast<days_type>(t3);   // 与上述等价
+    cout << setw(20) << "now(days) is: " << days_point.time_since_epoch().count() << endl;
+    ASSERT_EQ(days.count(), days_point.time_since_epoch().count());
+}
+
