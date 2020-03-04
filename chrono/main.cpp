@@ -11,50 +11,65 @@ using namespace std;
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
-    auto str = R"(
+    return RUN_ALL_TESTS();
+}
+
+class DurationTest : public ::testing::Test
+{
+public:
+    DurationTest(): twoseconds_(2)
+    {
+
+    }
+    static void SetUpTestSuite() {}
+    static void TearDownTestSuite()
+    {
+        auto str = R"(
 *****************************************************************************
 duration 的概念较为独立，但 time_point 和 clock 则互相引用，难以划清明显的边界。
     duration 只要区分数值、单位就很容易理解。
 *****************************************************************************
 )";
-    cout << str << endl;
-    return RUN_ALL_TESTS();
-}
+        cout << str << endl;
+    }
+    void SetUp() override {}
+    void TearDown() override {}
+//private:
+    const chrono::duration<int> twoseconds_;
+};
 
-TEST(DURATION, CopyCtor)
+TEST_F(DurationTest, CopyCtor)
 {
-    auto twoseconds = chrono::duration<int>(2);
-    ASSERT_EQ(twoseconds.count(), 2) << "2s has " << twoseconds.count() << " seconds.";
-    //auto twoseconds = chrono::seconds(2);
-    chrono::milliseconds alias = twoseconds;    // 这都行-拷贝构造可以
+    ASSERT_EQ(twoseconds_.count(), 2) << "2s has " << twoseconds_.count() << " seconds.";
+    //auto twoseconds_ = chrono::seconds(2);
+    chrono::milliseconds alias = twoseconds_;    // 这都行-拷贝构造可以
     ASSERT_EQ(alias.count(), 2000) << "2s has " << alias.count() << " milliseconds.";
-    alias = twoseconds;     // 低精度赋值给高精度可以
-    ASSERT_EQ(twoseconds, alias);
-    //twoseconds = alias;     // 高精度赋值给低精度必须显式转换
-    twoseconds = chrono::duration_cast<chrono::seconds>(alias);
+    alias = twoseconds_;     // 低精度赋值给高精度可以
+    ASSERT_EQ(twoseconds_, alias);
+    //twoseconds_ = alias;     // 高精度赋值给低精度必须显式转换
+    auto twoseconds = chrono::duration_cast<chrono::seconds>(alias);
     EXPECT_EQ(twoseconds, alias);
 }
 
-TEST(DURATION, Arithmetic)
+TEST_F(DurationTest, Arithmetic)
 {
-    auto twoseconds = chrono::duration<int>(2);
-    auto alias = twoseconds * 2;    // 这都行
+    auto alias = twoseconds_ * 2;    // 这都行
     ASSERT_EQ(alias.count(), 4) << "4s has " << alias.count() << " seconds.";
-    alias = twoseconds / 2;    // 这都行
+    alias = twoseconds_ / 2;    // 这都行
     ASSERT_EQ(alias.count(), 1) << "1s has " << alias.count() << " seconds.";
-    alias = twoseconds / 4;    // 这都行，结果是错误的
+    alias = twoseconds_ / 4;    // 这都行，结果是错误的
     ASSERT_EQ(alias.count(), 0) << "0.5s has " << alias.count() << " seconds.";
 
     /*估计也就是个先乘后除，先除后乘的问题*/
-    auto alias2 = chrono::duration_cast<chrono::milliseconds>(twoseconds) / 4;
+    auto alias2 = chrono::duration_cast<chrono::milliseconds>(twoseconds_) / 4;
     ASSERT_EQ(alias2.count(), 500) << "0.5s has " << alias2.count() << " milliseconds.";
-    chrono::milliseconds diff = alias - twoseconds;
+    chrono::milliseconds diff = alias - twoseconds_;
     ASSERT_EQ(diff.count(), -2000) << "diff(milli) is: " << diff.count();
-    diff = alias2 - twoseconds;
+    diff = alias2 - twoseconds_;
     ASSERT_EQ(diff.count(), -1500) << "diff(milli) is: " << diff.count();
 }
 
-TEST(DURATION, HalfSecond)
+TEST_F(DurationTest, HalfSecond)
 {
     // 自定义时间间隔：半秒
     typedef chrono::duration<double, ratio<1, 2>> halfseconds;
@@ -75,7 +90,7 @@ namespace il
     }
 }
 
-TEST(DURATION, Literals)
+TEST_F(DurationTest, Literals)
 {
     auto twoseconds = 2s;
     auto alias = chrono::duration_cast<chrono::milliseconds>(twoseconds / 4);
