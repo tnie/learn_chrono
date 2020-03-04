@@ -3,16 +3,16 @@
 #include <iomanip>
 #include <chrono>
 #include <thread>
+#include <gtest\gtest.h>
 
 using namespace std;
 //using namespace chrono;
 
-void test_duration();
 void test_time_point_clock();
 
-int main()
+int main(int argc, char** argv)
 {
-    test_duration();
+    testing::InitGoogleTest(&argc, argv);
     auto str = R"(
 *****************************************************************************
 duration 的概念较为独立，但 time_point 和 clock 则互相引用，难以划清明显的边界。
@@ -21,48 +21,56 @@ duration 的概念较为独立，但 time_point 和 clock 则互相引用，难�
 )";
     cout << str << endl;
     test_time_point_clock();
-    return 0;
+    return RUN_ALL_TESTS();
+}
+
+TEST(DURATION, CopyCtor)
+{
+    auto twoseconds = chrono::duration<int>(2);
+    ASSERT_EQ(twoseconds.count(), 2) << "2s has " << twoseconds.count() << " seconds.";
+    //auto twoseconds = chrono::seconds(2);
+    chrono::milliseconds alias = twoseconds;    // 这都行-拷贝构造可以
+    ASSERT_EQ(alias.count(), 2000) << "2s has " << alias.count() << " milliseconds.";
+    alias = twoseconds;     // 低精度赋值给高精度可以
+    ASSERT_EQ(twoseconds, alias);
+    //twoseconds = alias;     // 高精度赋值给低精度必须显式转换
+    twoseconds = chrono::duration_cast<chrono::seconds>(alias);
+    EXPECT_EQ(twoseconds, alias);
+}
+
+TEST(DURATION, Arithmetic)
+{
+    auto twoseconds = chrono::duration<int>(2);
+    auto alias = twoseconds * 2;    // 这都行
+    ASSERT_EQ(alias.count(), 4) << "4s has " << alias.count() << " seconds.";
+    alias = twoseconds / 2;    // 这都行
+    ASSERT_EQ(alias.count(), 1) << "1s has " << alias.count() << " seconds.";
+    alias = twoseconds / 4;    // 这都行，结果是错误的
+    ASSERT_EQ(alias.count(), 0) << "0.5s has " << alias.count() << " seconds.";
+
+    /*估计也就是个先乘后除，先除后乘的问题*/
+    auto alias2 = chrono::duration_cast<chrono::milliseconds>(twoseconds) / 4;
+    ASSERT_EQ(alias2.count(), 500) << "0.5s has " << alias2.count() << " milliseconds.";
+    chrono::milliseconds diff = alias - twoseconds;
+    ASSERT_EQ(diff.count(), -2000) << "diff(milli) is: " << diff.count();
+    diff = alias2 - twoseconds;
+    ASSERT_EQ(diff.count(), -1500) << "diff(milli) is: " << diff.count();
+}
+
+TEST(DURATION, HalfSecond)
+{
+    // 自定义时间间隔：半秒
+    typedef chrono::duration<double, ratio<1, 2>> halfseconds;
+    auto var = halfseconds(2.5);    // 1.25 秒
+    ASSERT_EQ(var.count(), 2.5) << "1.25s has " << var.count() << " halfseconds";
+    //alias = var; // 需要显示转换
+    auto alias = chrono::duration_cast<chrono::milliseconds> (var);
+    ASSERT_EQ(alias.count(), 1250) << "1.25s has " << alias.count() << " milliseconds";
 }
 
 
 void test_duration()
 {
-    auto twoseconds = chrono::duration<int>(2);
-    //auto twoseconds = chrono::seconds(2);
-    chrono::milliseconds alias = twoseconds;    // 这都行-拷贝构造可以
-    {
-        alias = twoseconds;     // 低精度赋值给高精度可以
-        //twoseconds = alias;     // 高精度赋值给低精度必须显式转换
-    }
-
-    cout << "2s has " << twoseconds.count() << " seconds" << endl;
-    cout << "2s has " << alias.count() << " milliseconds" << endl;
-    alias = twoseconds * 2;    // 这都行
-    cout << "4s has " << alias.count() << " milliseconds" << endl;
-    alias = twoseconds / 2;    // 这都行
-    cout << "1s has " << alias.count() << " milliseconds" << endl;
-    alias = twoseconds / 4;    // 这都行，结果是错误的
-    /*估计也就是个先乘后除，先除后乘的问题*/
-    cout << "0.5s has " << alias.count() << " milliseconds" << endl;
-    {
-        // 自定义时间间隔：半秒
-        typedef chrono::duration<double, ratio<1, 2>> halfseconds;
-        auto var = halfseconds(2.5);    // 1.25 秒
-        cout << "1.25s has " << var.count() << " halfseconds" << endl;
-        //alias = var; // 需要显示转换
-        alias = chrono::duration_cast<chrono::milliseconds> (var);
-        cout << "1.25s has " << alias.count() << " milliseconds" << endl;
-
-    }
-    {
-        chrono::milliseconds diff = alias - twoseconds;
-        cout << "diff(milli) is: " << diff.count() << endl;
-    }
-    {
-        chrono::seconds diff = chrono::duration_cast<chrono::seconds>(alias - twoseconds);      // 必须显式转换
-        cout << "diff(seconds) is: " << diff.count() << endl;
-    }
-
     cout << "sleep 2s ..." << endl;
     //this_thread::sleep_for(twoseconds);
     this_thread::sleep_for(2s); //TODO  这都行啊，这是如何实现的？
