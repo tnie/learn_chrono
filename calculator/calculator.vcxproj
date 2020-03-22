@@ -150,6 +150,10 @@
   <ItemGroup>
     <ClCompile Include="calculator.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="calculator001.h" />
+    <ClInclude Include="common.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

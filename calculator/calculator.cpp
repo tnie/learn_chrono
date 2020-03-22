@@ -3,17 +3,48 @@
 
 #include <iostream>
 #include <gtest/gtest.h>
+#include "calculator001.h"
 
+using namespace c1;
 
-TEST(Canculator, add)
+TEST(Calculator, add)
 {
-    EXPECT_EQ(2, 1 + 1);
+    EXPECT_EQ(2, calculator("1 + 1"));
+    EXPECT_DOUBLE_EQ(2, calculator("1.3 +0.7"));
 }
 
-TEST(Canculator, sub)
+TEST(Calculator, sub)
 {
-    EXPECT_EQ(2, 3 - 1);
+    EXPECT_EQ(2, calculator("3 - 1"));
+    EXPECT_DOUBLE_EQ(2, calculator("2.3 -0.29999999999999999"));
 }
+
+TEST(Calculator, multi)
+{
+    EXPECT_EQ(2, calculator(".5*4"));
+    EXPECT_DOUBLE_EQ(2, calculator(".49999999999999999999*4"));
+}
+
+TEST(Calculator, divide)
+{
+    EXPECT_EQ(2, calculator("4 /2"));
+    EXPECT_THROW(calculator("4 /0"), DivideZero);
+}
+
+TEST(Calculator, invlide)
+{
+    EXPECT_ANY_THROW(calculator("123"));
+    EXPECT_ANY_THROW(calculator("12@12"));
+    EXPECT_ANY_THROW(calculator("fjeoig"));
+}
+
+TEST(Calculator, cut)
+{
+    EXPECT_EQ(calculator("10.2/2="), 5.1);
+    EXPECT_EQ(calculator("10.2/2+1"), 5.1);
+    EXPECT_EQ(calculator("10.2/2abc"), 5.1);
+}
+
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
