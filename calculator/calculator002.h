@@ -53,15 +53,21 @@ double term()
             lhs *= primary();
             break;
         case '/':
-            lhs /= primary();
+        {
+            double d = primary();
+            if (d == 0)
+            {
+                throw DivideZero();
+            }
+            lhs /= d;
             break;
+        }        
         case '%':
             //lhs %= primary();
             break;
         default:
             std::cin.putback(op);
             return lhs;
-            break;
         }
     }
 }
@@ -84,7 +90,6 @@ double expression()
         default:
             std::cin.putback(op);
             return lhs;
-            break;
         }
     }
 }
