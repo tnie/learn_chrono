@@ -45,6 +45,24 @@ TEST(Calculator, cut)
     EXPECT_EQ(calculator("10.2/2abc"), 5.1);
 }
 
+#include "calculator002.h"
+int main()
+{
+    while (true)
+    {
+        double val = expression();
+        spdlog::info("={}", val);
+        char ch;
+        std::cin >> ch; // ';' or 'q'
+        if (ch == 'q')
+        {
+            break;
+        }
+        
+    }
+    return 0;
+}
+
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单

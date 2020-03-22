@@ -12,29 +12,13 @@ public:
 
 class Token_stream;
 
-double expression()
-{
+double expression();
 
-}
-
-double term()
+double number()
 {
-    char op;
-    std::cin >> op;
-    switch (op)
-    {
-    case '*':
-        primary();
-        break;
-    case '/':
-        primary();
-        break;
-    case '%':
-        primary();
-        break;
-    default:
-        break;
-    }
+    double val;
+    std::cin >> val;
+    return val;
 }
 
 double primary()
@@ -50,14 +34,57 @@ double primary()
     }
     else
     {
+        std::cin.putback(op);
         val = number();
     }
     return val;
 }
 
-double number()
+double term()
 {
-    double val;
-    std::cin >> val;
-    return val;
+    double lhs = primary();
+    while (true)
+    {
+        char op;
+        std::cin >> op;
+        switch (op)
+        {
+        case '*':
+            lhs *= primary();
+            break;
+        case '/':
+            lhs /= primary();
+            break;
+        case '%':
+            //lhs %= primary();
+            break;
+        default:
+            std::cin.putback(op);
+            return lhs;
+            break;
+        }
+    }
+}
+
+double expression()
+{
+    double lhs = term();
+    while (true)
+    {
+        char op;
+        std::cin >> op;
+        switch (op)
+        {
+        case '+':
+            lhs += term();
+            break;
+        case '-':
+            lhs -= term();
+            break;
+        default:
+            std::cin.putback(op);
+            return lhs;
+            break;
+        }
+    }
 }
