@@ -17,8 +17,10 @@ Task Add100Coroutine(int a)
 
 int main()
 {
-    Add100Coroutine(100);
-    Add100Coroutine(100);
+    for (size_t i = 0; i < 5; i++)
+    {
+        Add100Coroutine(i);
+    }
     getchar();  // 丑陋的。如何等待任务或放弃任务？
     return 0;
 }

@@ -7,26 +7,32 @@
 struct Add100Awaiter
 {
     int num_;
-    int result_;
+    std::shared_ptr<int> result_;
     Add100Awaiter(int a) :num_(a)
     {
 
     }
+    // 如果结果已经得到，不需要执行协程
     bool await_ready()
     {
-        return false;
+        result_ = Add100Random(num_);
+        return (result_!= nullptr);
     }
     void await_suspend(std::experimental::coroutine_handle<> h)
     {
         Add100ByCallback(num_,
             [h, this](int value)
         {
-            result_ = value;
+            result_ = std::make_shared<int>(value);
             h.resume();
         });
     }
-    bool await_resume()
+    int await_resume()
     {
-        return result_;
+        if (result_)
+        {
+            return *result_;
+        }
+        throw std::exception("* nullptr");
     }
 };
