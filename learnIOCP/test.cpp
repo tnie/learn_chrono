@@ -1,11 +1,9 @@
 #include <Windows.h>
-#include <process.h>
-#include <stdio.h>
+#include <thread>
+#include <spdlog\spdlog.h>
 #include <tchar.h>
 #include <locale>
-
-// 源码拷贝自，自己补充头文件
-// https://blog.csdn.net/dashoumeixi/article/details/83587590
+#include <vector>
 
 typedef struct
 {
@@ -46,25 +44,23 @@ unsigned int __stdcall io_thread(void *param)
     return 0;
 }
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
     _tsetlocale(LC_CTYPE, TEXT(""));
-    SYSTEM_INFO sysInfo;
-    GetSystemInfo(&sysInfo);
-
     //准备线程数量
-    const int NThread = sysInfo.dwNumberOfProcessors + 2;
+    const int NThread = std::thread::hardware_concurrency() + 2;
 
     //创建一个完成端口
     HANDLE iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, NThread);
-    HANDLE * thread_handles = new HANDLE[NThread];
+    std::vector<std::thread> thread_handles;
+    thread_handles.reserve(NThread);
 
     //创建线程
     for (int i = 0; i < NThread; ++i)
-        thread_handles[i] = (HANDLE)_beginthreadex(0, 0, io_thread, (void*)iocp, 0, 0);
+        thread_handles.push_back(std::thread([iocp]() { io_thread(iocp); }));
 
     HANDLE hFile = CreateFile(
-        TEXT("D:/download/bookmarks.html"),  //这里自己修改
+        TEXT("./test.cpp"),  //这里自己修改
         GENERIC_READ,
         FILE_SHARE_READ,
         NULL,
@@ -101,7 +97,13 @@ int _tmain(int argc, _TCHAR* argv[])
     for (int i = 0; i < NThread; ++i)
         PostQueuedCompletionStatus(iocp, 0, (DWORD)0, 0);
 
-    WaitForMultipleObjects(NThread, thread_handles, TRUE, -1);
+    for (auto & th : thread_handles)
+    {
+        if (th.joinable())
+        {
+            th.join();
+        }
+    }
 
     return 0;
 }
