@@ -37,7 +37,7 @@ unsigned int __stdcall io_thread(void *param)
         }
         spdlog::info("byteread:{}, key:{},ret :{}", bytesRead, reinterpret_cast<uintptr_t>(key->hFile), ret);
         spdlog::info("overlapped  offset:{}", s->overlap.Offset);
-        spdlog::info("%s\n", s->buf);
+        spdlog::info("{}", s->buf);
     }
     return 0;
 }
@@ -65,7 +65,6 @@ int main(int argc, char* argv[])
         FILE_FLAG_OVERLAPPED,  //注意.
         NULL
     );
-    DWORD numread = 0, ret = 0;
 
     //初始化数据 , 这些数据将在完成后被传递到线程中
     cp_overlapped * s = new cp_overlapped;
@@ -82,7 +81,7 @@ int main(int argc, char* argv[])
 
     //读取文件 , 等读完后, 将有一个线程处理读完后的步骤
     //注意 cp_overlapped 的使用, 在读完后, 其中一个线程将获取此数据
-    ret = ReadFile(hFile, s->buf, 1024, &numread, &s->overlap);
+    DWORD ret = ReadFile(hFile, s->buf, sizeof(s->buf), NULL, &s->overlap);
     spdlog::info("readfile ret:{} , ERR:{}", ret, GetLastError());
 
 
