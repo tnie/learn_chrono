@@ -1,8 +1,6 @@
 #include <Windows.h>
 #include <thread>
 #include <spdlog\spdlog.h>
-#include <tchar.h>
-#include <locale>
 #include <vector>
 
 typedef struct
@@ -20,7 +18,7 @@ typedef struct
 unsigned int __stdcall io_thread(void *param)
 {
     HANDLE iocp = (HANDLE)param;
-    _tprintf(TEXT("线程创建完毕 iocp:%p\n"), iocp);
+    spdlog::info("线程创建完毕 iocp:{}", reinterpret_cast<uintptr_t>(iocp));
     DWORD bytesRead = 0;
     cp_key * key = 0;
     cp_overlapped * s = 0;
@@ -34,19 +32,18 @@ unsigned int __stdcall io_thread(void *param)
 
         //退出线程
         if (key == 0 && s == 0) {
-            _tprintf(TEXT("exit"));
+            spdlog::info("exit");
             break;
         }
-        _tprintf(TEXT("byteread:%d, key:%p,ret :%d\n"), bytesRead, key->hFile, ret);
-        _tprintf(TEXT("overlapped  offset:%d\n"), s->overlap.Offset);
-        _tprintf(TEXT("%s\n"), s->buf);
+        spdlog::info("byteread:{}, key:{},ret :{}", bytesRead, reinterpret_cast<uintptr_t>(key->hFile), ret);
+        spdlog::info("overlapped  offset:{}", s->overlap.Offset);
+        spdlog::info("%s\n", s->buf);
     }
     return 0;
 }
 
 int main(int argc, char* argv[])
 {
-    _tsetlocale(LC_CTYPE, TEXT(""));
     //准备线程数量
     const int NThread = std::thread::hardware_concurrency() + 2;
 
@@ -86,7 +83,7 @@ int main(int argc, char* argv[])
     //读取文件 , 等读完后, 将有一个线程处理读完后的步骤
     //注意 cp_overlapped 的使用, 在读完后, 其中一个线程将获取此数据
     ret = ReadFile(hFile, s->buf, 1024, &numread, &s->overlap);
-    printf("readfile ret:%d , ERR:%d\n", ret, GetLastError());
+    spdlog::info("readfile ret:{} , ERR:{}", ret, GetLastError());
 
 
     //等待一下
