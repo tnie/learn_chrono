@@ -10,9 +10,9 @@ using namespace std;
 Task Add100Coroutine(int a)
 {
     int ret = co_await Add100Awaiter(a);
-    spdlog::info("get result from coroutine: {}", ret);
+    spdlog::info("A get result from coroutine: {}", ret);
     ret = co_await Add100Awaiter(a);
-    spdlog::info( "get result from coroutine: {}" ,ret );
+    spdlog::info( "B get result from coroutine: {}" ,ret );
 }
 
 int main()
