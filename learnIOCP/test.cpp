@@ -3,6 +3,8 @@
 #include <spdlog\spdlog.h>
 #include <vector>
 
+// TODO 内存泄漏、多线程意义
+
 typedef struct
 {
     HANDLE hFile;
@@ -11,7 +13,7 @@ typedef struct
 typedef struct
 {
     OVERLAPPED overlap;
-    char buf[1024];
+    char buf[1024];     // TODO 是常规操作还是诡计
 } cp_overlapped;        //overlapped 放第一个, 相当于一个OVERLAPPED结构
 
 
@@ -36,7 +38,7 @@ unsigned int __stdcall io_thread(void *param)
             break;
         }
         spdlog::info("byteread:{}, key:{},ret :{}", bytesRead, reinterpret_cast<uintptr_t>(key->hFile), ret);
-        spdlog::info("overlapped  offset:{}", s->overlap.Offset);
+        spdlog::info("overlapped  offset:{}", s->overlap.Offset);   // TODO 意义
         spdlog::info("{}", s->buf);
     }
     return 0;
@@ -81,13 +83,29 @@ int main(int argc, char* argv[])
 
     //读取文件 , 等读完后, 将有一个线程处理读完后的步骤
     //注意 cp_overlapped 的使用, 在读完后, 其中一个线程将获取此数据
-    DWORD ret = ReadFile(hFile, s->buf, sizeof(s->buf), NULL, &s->overlap);
-    spdlog::info("readfile ret:{} , ERR:{}", ret, GetLastError());
-
-
-    //等待一下
-    for (int i = 0; i < 2; ++i)
-        Sleep(1000);
+    BOOL ret = ReadFile(hFile, s->buf, sizeof(s->buf), NULL, &s->overlap);
+    spdlog::info("ReadFile 返回值:{} , ERR:{}", ret, GetLastError());
+    if (ret)
+    {
+        //文件真是被读完了，rc为true
+        // 或当数据被放入cache中，或操作系统认为它可以很快速地取得数据，rc为true
+    }
+    else
+    {
+        if (GetLastError() == ERROR_IO_PENDING)
+        {
+            //当错误是ERROR_IO_PENDING,那意味着读文件的操作还在进行中
+            //等候，直到文件读完
+            //WaitForSingleObject(hFile, INFINITE);
+            //rc = GetOverlappedResult(hFile, &overlap, &numread, FALSE);
+            //上面二条语句完成的功能与下面一条语句的功能等价：
+            // GetOverlappedResult(hFile,&overlap,&numread,TRUE);
+        }
+        else
+        {
+            //出错了
+        }
+    }
 
     //告诉所有线程去死吧
     for (int i = 0; i < NThread; ++i)
@@ -101,5 +119,5 @@ int main(int argc, char* argv[])
         }
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
