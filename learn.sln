@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atomic_flag", "atomic_flag\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "int_thread", "int_thread\int_thread.vcxproj", "{510B4D12-ED72-4404-B969-93CAD5B1C5EA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SafeQueue", "SafeQueue\SafeQueue.vcxproj", "{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -57,6 +59,14 @@ Global
 		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Release|x64.Build.0 = Release|x64
 		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Release|x86.ActiveCfg = Release|Win32
 		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Release|x86.Build.0 = Release|Win32
+		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Debug|x64.ActiveCfg = Debug|x64
+		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Debug|x64.Build.0 = Debug|x64
+		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Debug|x86.ActiveCfg = Debug|Win32
+		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Debug|x86.Build.0 = Debug|Win32
+		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Release|x64.ActiveCfg = Release|x64
+		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Release|x64.Build.0 = Release|x64
+		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Release|x86.ActiveCfg = Release|Win32
+		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
