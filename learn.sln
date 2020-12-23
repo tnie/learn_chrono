@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chrono", "chrono\chrono.vcxproj", "{FEB34EF2-3640-4C68-BC87-B07C56DD58DC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{5A3BAD1B-3804-4C01-A1F1-C23462D2F2D4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chrono_test", "chrono_test\test.vcxproj", "{5A3BAD1B-3804-4C01-A1F1-C23462D2F2D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
