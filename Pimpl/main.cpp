@@ -11,7 +11,7 @@ void test(const Person & person)
     std::vector<Person> family;
     // TODO 为什么还是匹配的拷贝构造呢？——见 README # 移动构造和常量
     // error C2280: “Person::Person(const Person &)”: 尝试引用已删除的函数
-    family.push_back(std::move(person));
+    //family.push_back(std::move(person));
 }
 
 int main()
