@@ -1,6 +1,9 @@
 
 #include <experimental\coroutine>
 
+//https://lewissbaker.github.io/2018/09/05/understanding-the-promise-type
+//How the compiler chooses the promise type?
+//by looking for a nested promise_type typedef defined on the return-type.
 struct Task
 {
     struct promise_type {

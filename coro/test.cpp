@@ -13,6 +13,7 @@ Task Add100Coroutine(int a)
     spdlog::info("A get result from coroutine: {}", ret);
     ret = co_await Add100Awaiter(a);
     spdlog::info( "B get result from coroutine: {}" ,ret );
+    co_return;
 }
 
 int main()
