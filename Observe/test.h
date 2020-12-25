@@ -8,12 +8,12 @@ public:
     Blob() {};
     ~Blob();
 
-    int attach(const Observer* ob);
+    int attach(const Observer*& ob);
     int notify();
     int change(int c);
     int status() const;
 private:
-    std::vector<const Observer*> m_observers;
+    std::vector<const Observer*&> m_observers;
     int m_status;
 };
 

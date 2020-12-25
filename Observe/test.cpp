@@ -3,7 +3,7 @@
 
 using namespace std;
 Blob::~Blob() { cout << "blob dctor" << endl; }
-int Blob::attach(const Observer * ob)
+int Blob::attach(const Observer*& ob)
 {
     m_observers.push_back(ob);
     return m_observers.size();
@@ -14,7 +14,8 @@ int Blob::notify()
     for each (const auto var in m_observers)
     {
         // TODO 对象已销毁
-        var->update();
+        if (var)
+            var->update();
     }
     return m_observers.size();
 }
