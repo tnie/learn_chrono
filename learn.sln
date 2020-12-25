@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PasskeyIdiom", "PasskeyIdio
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "move", "move\move.vcxproj", "{3EB5F5FC-0F80-4C88-A1AB-4D7162B36583}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Observe", "Observe\Observe.vcxproj", "{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -131,6 +133,14 @@ Global
 		{3EB5F5FC-0F80-4C88-A1AB-4D7162B36583}.Release|x64.Build.0 = Release|x64
 		{3EB5F5FC-0F80-4C88-A1AB-4D7162B36583}.Release|x86.ActiveCfg = Release|Win32
 		{3EB5F5FC-0F80-4C88-A1AB-4D7162B36583}.Release|x86.Build.0 = Release|Win32
+		{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}.Debug|x64.ActiveCfg = Debug|x64
+		{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}.Debug|x64.Build.0 = Debug|x64
+		{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}.Debug|x86.ActiveCfg = Debug|Win32
+		{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}.Debug|x86.Build.0 = Debug|Win32
+		{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}.Release|x64.ActiveCfg = Release|x64
+		{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}.Release|x64.Build.0 = Release|x64
+		{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}.Release|x86.ActiveCfg = Release|Win32
+		{DB82E84B-98CB-4BD3-8E83-A8A2218423DA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
