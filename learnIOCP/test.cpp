@@ -12,6 +12,7 @@
 typedef struct
 {
     HANDLE hFile;
+    int offset{0};  // 已读内容 TODO 多线程竞争吗
 } cp_key;                  //一个自定义数据 ，随便填吧
 
 typedef struct
@@ -43,6 +44,27 @@ unsigned int __stdcall io_thread(void *param)
         spdlog::info("byteread:{}, key:{},ret :{}", bytesRead, reinterpret_cast<uintptr_t>(key->hFile), ret);
         //printf("%.*s\n",bytesRead, s->buf);
         spdlog::info("{:.{}}", s->buf, bytesRead);  //a non-null terminated string
+        if (ret)
+        {
+            key->offset += bytesRead;
+            if (bytesRead < sizeof(s->buf))
+            {
+                spdlog::info("finish");
+                //return 0;   // 要分担任务的
+            }
+            else
+            {
+                memset(s, 0, sizeof(cp_overlapped));
+                s->overlap.Offset = key->offset;
+                BOOL ret = ReadFile(key->hFile, s->buf, sizeof(s->buf), NULL, &s->overlap);
+                spdlog::info("ReadFile 返回值:{} , ERR:{}", ret, GetLastError());
+            }
+        }
+        else
+        {
+            spdlog::error("byteread:{}, key:{},ret :{}", bytesRead, reinterpret_cast<uintptr_t>(key->hFile), ret);
+            return EXIT_FAILURE;
+        }
     }
     return 0;
 }
@@ -52,7 +74,11 @@ int main(int argc, char* argv[])
     // 打印线程号
     spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%t] [%^%l%$] %v");
     //准备线程数量
+#ifdef _DEBUG
+    const int NThread = 2;
+#else
     const int NThread = std::thread::hardware_concurrency() + 2;
+#endif // _DEBUG
 
     //创建一个完成端口
     HANDLE iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, NThread);
@@ -64,7 +90,7 @@ int main(int argc, char* argv[])
         thread_handles.push_back(std::thread([iocp]() { io_thread(iocp); }));
 
     HANDLE hFile = CreateFile(
-        TEXT("./Text.txt"),  //这里自己修改
+        TEXT("./test.cpp"),  //这里自己修改
         GENERIC_READ,
         FILE_SHARE_READ,
         NULL,
@@ -114,7 +140,7 @@ int main(int argc, char* argv[])
 
     //告诉所有线程去死吧
     for (int i = 0; i < NThread; ++i)
-        PostQueuedCompletionStatus(iocp, 0, (DWORD)0, 0);
+        //PostQueuedCompletionStatus(iocp, 0, (DWORD)0, 0);
 
     for (auto & th : thread_handles)
     {
