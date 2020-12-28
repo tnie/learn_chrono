@@ -41,6 +41,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sync_callback", "sync_callb
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "threadpool", "threadpool\threadpool.vcxproj", "{A2C91380-A46F-4624-9D91-177EF77471DA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VariadicTemplate", "VariadicTemplate\VariadicTemplate.vcxproj", "{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -191,6 +193,14 @@ Global
 		{A2C91380-A46F-4624-9D91-177EF77471DA}.Release|x64.Build.0 = Release|x64
 		{A2C91380-A46F-4624-9D91-177EF77471DA}.Release|x86.ActiveCfg = Release|Win32
 		{A2C91380-A46F-4624-9D91-177EF77471DA}.Release|x86.Build.0 = Release|Win32
+		{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}.Debug|x64.ActiveCfg = Debug|x64
+		{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}.Debug|x64.Build.0 = Debug|x64
+		{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}.Debug|x86.ActiveCfg = Debug|Win32
+		{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}.Debug|x86.Build.0 = Debug|Win32
+		{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}.Release|x64.ActiveCfg = Release|x64
+		{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}.Release|x64.Build.0 = Release|x64
+		{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}.Release|x86.ActiveCfg = Release|Win32
+		{8E5D73D2-4C6B-412E-A446-07E8DD2D75ED}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
