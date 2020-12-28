@@ -2,11 +2,13 @@
 #include <thread>
 #include <spdlog\spdlog.h>
 #include <vector>
+#include "utility.h"
 
 // TODO 内存泄漏、
 // TODO 多线程意义，只读一个文件创建多个线程，为了演示而演示
 
 // 程序用途：遍历当前仓库中的 .h/cpp 文件，并输出其中的空白字符数量
+// TODO 1.怎么结束（执行完毕或强制退出） 2.错误处理
 // 学习步骤：读写文件，线程使用，网络编程，完成端口
 
 typedef struct
@@ -62,35 +64,22 @@ unsigned int __stdcall io_thread(void *param)
         }
         else
         {
-            spdlog::error("byteread:{}, key:{},ret :{}", bytesRead, reinterpret_cast<uintptr_t>(key->hFile), ret);
+            spdlog::error("key:{},ret :{}, ERR:{} ", reinterpret_cast<uintptr_t>(key->hFile), ret, GetLastError());
             return EXIT_FAILURE;
         }
     }
     return 0;
 }
 
-int main(int argc, char* argv[])
+inline std::wstring s2ws(const std::string& str)
 {
-    // 打印线程号
-    spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%t] [%^%l%$] %v");
-    //准备线程数量
-#ifdef _DEBUG
-    const int NThread = 2;
-#else
-    const int NThread = std::thread::hardware_concurrency() + 2;
-#endif // _DEBUG
+    return std::wstring{ str.begin(), str.end() };
+}
 
-    //创建一个完成端口
-    HANDLE iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, NThread);
-    std::vector<std::thread> thread_handles;
-    thread_handles.reserve(NThread);
-
-    //创建线程
-    for (int i = 0; i < NThread; ++i)
-        thread_handles.push_back(std::thread([iocp]() { io_thread(iocp); }));
-
+void ReadFile(HANDLE & iocp, const std::string& file)
+{
     HANDLE hFile = CreateFile(
-        TEXT("./test.cpp"),  //这里自己修改
+        s2ws(file).c_str(),  //这里自己修改
         GENERIC_READ,
         FILE_SHARE_READ,
         NULL,
@@ -135,6 +124,37 @@ int main(int argc, char* argv[])
         else
         {
             //出错了
+        }
+    }
+}
+
+int main(int argc, char* argv[])
+{
+    // 打印线程号
+    spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%t] [%^%l%$] %v");
+    vector<string> files;
+    cf_findFileFromDir(R"(E:\Git\learn_chrono)", files);
+    //准备线程数量
+#ifdef _DEBUG
+    const int NThread = 2;
+#else
+    const int NThread = std::thread::hardware_concurrency() + 2;
+#endif // _DEBUG
+
+    //创建一个完成端口
+    HANDLE iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, NThread);
+    std::vector<std::thread> thread_handles;
+    thread_handles.reserve(NThread);
+
+    //创建线程
+    for (int i = 0; i < NThread; ++i)
+        thread_handles.push_back(std::thread([iocp]() { io_thread(iocp); }));
+
+    for (auto& file : files)
+    {
+        if (file.rfind(".cpp") != string::npos)   // TODO 读全部会报错
+        {
+            ReadFile(iocp, file);
         }
     }
 
