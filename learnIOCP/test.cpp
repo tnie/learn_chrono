@@ -3,7 +3,11 @@
 #include <spdlog\spdlog.h>
 #include <vector>
 
-// TODO 内存泄漏、多线程意义
+// TODO 内存泄漏、
+// TODO 多线程意义，只读一个文件创建多个线程，为了演示而演示
+
+// 程序用途：遍历当前仓库中的 .h/cpp 文件，并输出其中的空白字符数量
+// 学习步骤：读写文件，线程使用，网络编程，完成端口
 
 typedef struct
 {
@@ -24,28 +28,29 @@ unsigned int __stdcall io_thread(void *param)
     DWORD bytesRead = 0;
     cp_key * key = 0;
     cp_overlapped * s = 0;
-    DWORD ret = 0;
 
     while (1)
     {
 
         //等待完成端口的响应
-        ret = GetQueuedCompletionStatus(iocp, &bytesRead, (LPDWORD)&key, (LPOVERLAPPED*)&s, INFINITE);
+        BOOL ret = GetQueuedCompletionStatus(iocp, &bytesRead, (LPDWORD)&key, (LPOVERLAPPED*)&s, INFINITE);
 
         //退出线程
         if (key == 0 && s == 0) {
             spdlog::info("exit");
-            break;
+            return 0;
         }
         spdlog::info("byteread:{}, key:{},ret :{}", bytesRead, reinterpret_cast<uintptr_t>(key->hFile), ret);
-        spdlog::info("overlapped  offset:{}", s->overlap.Offset);   // TODO 意义
-        spdlog::info("{}", s->buf);
+        //printf("%.*s\n",bytesRead, s->buf);
+        spdlog::info("{:.{}}", s->buf, bytesRead);  //a non-null terminated string
     }
     return 0;
 }
 
 int main(int argc, char* argv[])
 {
+    // 打印线程号
+    spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%t] [%^%l%$] %v");
     //准备线程数量
     const int NThread = std::thread::hardware_concurrency() + 2;
 
@@ -59,7 +64,7 @@ int main(int argc, char* argv[])
         thread_handles.push_back(std::thread([iocp]() { io_thread(iocp); }));
 
     HANDLE hFile = CreateFile(
-        TEXT("./test.cpp"),  //这里自己修改
+        TEXT("./Text.txt"),  //这里自己修改
         GENERIC_READ,
         FILE_SHARE_READ,
         NULL,
