@@ -7,13 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chrono", "chrono\chrono.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atomic", "atomic\atomic.vcxproj", "{D12E225F-AE15-41A2-A705-2CC4FC585CEB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "int_thread", "int_thread\int_thread.vcxproj", "{510B4D12-ED72-4404-B969-93CAD5B1C5EA}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SafeQueue", "SafeQueue\SafeQueue.vcxproj", "{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pimpl", "Pimpl\Pimpl.vcxproj", "{E49B5791-2EDE-4A80-BEA0-19DC587609D4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication2", "coro\ConsoleApplication2.vcxproj", "{AA7BE321-781F-4044-B9D2-D423B010996C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coro", "coro\ConsoleApplication2.vcxproj", "{AA7BE321-781F-4044-B9D2-D423B010996C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cppython", "cppython\ConsoleApplication1.vcxproj", "{708062F2-7FCE-4814-8884-E640AC0F6521}"
 EndProject
@@ -65,14 +63,6 @@ Global
 		{D12E225F-AE15-41A2-A705-2CC4FC585CEB}.Release|x64.Build.0 = Release|x64
 		{D12E225F-AE15-41A2-A705-2CC4FC585CEB}.Release|x86.ActiveCfg = Release|Win32
 		{D12E225F-AE15-41A2-A705-2CC4FC585CEB}.Release|x86.Build.0 = Release|Win32
-		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Debug|x64.ActiveCfg = Debug|x64
-		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Debug|x64.Build.0 = Debug|x64
-		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Debug|x86.ActiveCfg = Debug|Win32
-		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Debug|x86.Build.0 = Debug|Win32
-		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Release|x64.ActiveCfg = Release|x64
-		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Release|x64.Build.0 = Release|x64
-		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Release|x86.ActiveCfg = Release|Win32
-		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Release|x86.Build.0 = Release|Win32
 		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Debug|x64.ActiveCfg = Debug|x64
 		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Debug|x64.Build.0 = Debug|x64
 		{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}.Debug|x86.ActiveCfg = Debug|Win32
