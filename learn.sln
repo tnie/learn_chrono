@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chrono_test", "chrono_test\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atomic", "atomic\atomic.vcxproj", "{D12E225F-AE15-41A2-A705-2CC4FC585CEB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atomic_flag", "atomic_flag\atomic_flag.vcxproj", "{180A5E88-D398-4252-871A-BE85688308DB}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "int_thread", "int_thread\int_thread.vcxproj", "{510B4D12-ED72-4404-B969-93CAD5B1C5EA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SafeQueue", "SafeQueue\SafeQueue.vcxproj", "{E1ACA333-A90E-48E5-828E-D8A1F1DDAA66}"
@@ -73,14 +71,6 @@ Global
 		{D12E225F-AE15-41A2-A705-2CC4FC585CEB}.Release|x64.Build.0 = Release|x64
 		{D12E225F-AE15-41A2-A705-2CC4FC585CEB}.Release|x86.ActiveCfg = Release|Win32
 		{D12E225F-AE15-41A2-A705-2CC4FC585CEB}.Release|x86.Build.0 = Release|Win32
-		{180A5E88-D398-4252-871A-BE85688308DB}.Debug|x64.ActiveCfg = Debug|x64
-		{180A5E88-D398-4252-871A-BE85688308DB}.Debug|x64.Build.0 = Debug|x64
-		{180A5E88-D398-4252-871A-BE85688308DB}.Debug|x86.ActiveCfg = Debug|Win32
-		{180A5E88-D398-4252-871A-BE85688308DB}.Debug|x86.Build.0 = Debug|Win32
-		{180A5E88-D398-4252-871A-BE85688308DB}.Release|x64.ActiveCfg = Release|x64
-		{180A5E88-D398-4252-871A-BE85688308DB}.Release|x64.Build.0 = Release|x64
-		{180A5E88-D398-4252-871A-BE85688308DB}.Release|x86.ActiveCfg = Release|Win32
-		{180A5E88-D398-4252-871A-BE85688308DB}.Release|x86.Build.0 = Release|Win32
 		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Debug|x64.ActiveCfg = Debug|x64
 		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Debug|x64.Build.0 = Debug|x64
 		{510B4D12-ED72-4404-B969-93CAD5B1C5EA}.Debug|x86.ActiveCfg = Debug|Win32
