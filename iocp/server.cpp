@@ -180,7 +180,6 @@ DWORD WINAPI ServerWorkThread(LPVOID IpParam)
     LPOVERLAPPED IpOverlapped;
     LPPER_HANDLE_DATA PerHandleData = NULL;
     LPPER_IO_DATA PerIoData = NULL;
-    DWORD RecvBytes;
     DWORD Flags = 0;
     BOOL bRet = false;
 
@@ -210,7 +209,7 @@ DWORD WINAPI ServerWorkThread(LPVOID IpParam)
         PerIoData->databuff.len = 1024;
         PerIoData->databuff.buf = PerIoData->buffer;
         PerIoData->operationType = 0;	// read
-        WSARecv(PerHandleData->socket, &(PerIoData->databuff), 1, &RecvBytes, &Flags, &(PerIoData->overlapped), NULL);
+        WSARecv(PerHandleData->socket, &(PerIoData->databuff), 1, NULL, &Flags, &(PerIoData->overlapped), NULL);
     }
 
     return 0;
