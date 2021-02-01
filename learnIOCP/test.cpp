@@ -20,7 +20,7 @@ typedef struct
 typedef struct
 {
     OVERLAPPED overlap;
-    char buf[1024];     // TODO 是常规操作还是诡计
+    char buf[1024];     // TODO 是常规操作还是诡计，CONTAINING_RECORD 宏
 } cp_overlapped;        //overlapped 放第一个, 相当于一个OVERLAPPED结构
 
 
@@ -51,6 +51,8 @@ unsigned int __stdcall io_thread(void *param)
             key->offset += bytesRead;
             if (bytesRead < sizeof(s->buf))
             {
+                //delete s;
+                //delete key;
                 spdlog::info("finish");
                 //return 0;   // 要分担任务的
             }
@@ -133,7 +135,7 @@ int main(int argc, char* argv[])
     // 打印线程号
     spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%t] [%^%l%$] %v");
     vector<string> files;
-    cf_findFileFromDir(R"(E:\Git\learn_chrono)", files);
+    cf_findFileFromDir(R"(F:\_DayK)", files);
     //准备线程数量
 #ifdef _DEBUG
     const int NThread = 2;
@@ -152,7 +154,7 @@ int main(int argc, char* argv[])
 
     for (auto& file : files)
     {
-        if (file.rfind(".cpp") != string::npos)   // TODO 读全部会报错
+        //if (file.rfind(".cpp") != string::npos)   // TODO 读全部会报错
         {
             ReadFile(iocp, file);
         }
