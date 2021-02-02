@@ -8,9 +8,10 @@ unsigned long fib(int n)
     else return fib(n - 1) + fib(n - 2);
 }
 
-template<unsigned long N>
+template<int N>
 struct Fib
 {
+    //static_assert(N >= 0, "undefined behavior.");
     constexpr static unsigned long value =
         Fib<N - 1>::value + Fib<N - 2>::value;
 };
@@ -24,7 +25,7 @@ template<> struct Fib<1> { constexpr static unsigned long value = 1; };
 template<int N, int LIMIT = 45>
 unsigned long __fib(int i)
 {
-    if (i>= LIMIT) {
+    if (i < 0 || i >= LIMIT) {
         throw std::runtime_error("undefined behavior.");
     }
     if (i == N) return Fib<N>::value;
@@ -40,6 +41,7 @@ unsigned long fib2(int i)
 {
     //it's correct, but is deprecated.
     //return __fib<30>(i);  // -> __fib<0>(i)
+    return __fib<-1>(i);  // error
     return __fib<0>(i);
 }
 
