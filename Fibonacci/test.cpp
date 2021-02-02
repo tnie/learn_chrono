@@ -15,23 +15,15 @@ struct Fib
         Fib<N - 1>::value + Fib<N - 2>::value;
 };
 
-template<>
-struct Fib<0>
-{
-    constexpr static unsigned long value = 0;
-};
+//特化终结递归，否则上面那个递归会死循环，编译时报错
+template<> struct Fib<0> { constexpr static unsigned long value = 0; };
+template<> struct Fib<1> { constexpr static unsigned long value = 1; };
 
-template<>
-struct Fib<1>
-{
-    constexpr static unsigned long value = 1;
-};
 
 //辅助函数
-template<int N>
+template<int N, int LIMIT = 45>
 unsigned long __fib(int i)
 {
-    constexpr int LIMIT = 45;
     if (i>= LIMIT) {
         throw std::runtime_error("undefined behavior.");
     }
@@ -46,13 +38,15 @@ unsigned long __fib(int i)
 
 unsigned long fib2(int i)
 {
+    //it's correct, but is deprecated.
+    //return __fib<30>(i);  // -> __fib<0>(i)
     return __fib<0>(i);
 }
 
 int main()
 {
     spdlog::info("start..");
-    /*constexpr*/ int n = 40;
+    /*constexpr*/ int n = 5;
     //spdlog::info("Fib<{}>={}", n, Fib<n>::value);
     spdlog::info("Fib<{}>={}", n, fib2(n));
     spdlog::info("fib({})={}", n, fib(n));
