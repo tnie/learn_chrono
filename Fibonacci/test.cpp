@@ -11,7 +11,7 @@ unsigned long fib(int n)
 template<int N>
 struct Fib
 {
-    //static_assert(N >= 0, "undefined behavior.");
+    static_assert(N >= 0, "undefined behavior.");
     constexpr static unsigned long value =
         Fib<N - 1>::value + Fib<N - 2>::value;
 };
@@ -41,7 +41,7 @@ unsigned long fib2(int i)
 {
     //it's correct, but is deprecated.
     //return __fib<30>(i);  // -> __fib<0>(i)
-    return __fib<-1>(i);  // error
+    //return __fib<-1>(i);  // error
     return __fib<0>(i);
 }
 
