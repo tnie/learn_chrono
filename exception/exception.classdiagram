@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="52179873-8bb0-45a2-9687-0c1a229903ad" name="exception" linkedPackageId="2c594c68-5540-4719-a4cf-014ddfd9b5f7" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="83de425b-c908-488c-be59-437614c0f048" name="std::exception" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9097c19f-d2af-4ff4-886b-5bded79283d3" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="898a7085-652a-4879-96cb-7e88d845e071" name="logic_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8f702450-c659-4854-9d3e-8af341ef7c1b" />
+        <generalsInternal>
+          <generalization Id="f0e0c098-aac0-4318-a4db-e2a28c3e6708" isSubstitutable="false">
+            <classMoniker Id="83de425b-c908-488c-be59-437614c0f048" LastKnownName="std::exception" />
+            <elementDefinition Id="8f701fbf-d402-4ffb-81ea-2dc481b14234" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7ec7222b-a872-4cc6-8561-ccf47d8f71e7" name="runtime_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="dafa8397-5fd4-4418-9ad5-b583425f459a" />
+        <generalsInternal>
+          <generalization Id="b63eda1b-abe3-497d-bb00-e9047a09abd0" isSubstitutable="false">
+            <classMoniker Id="83de425b-c908-488c-be59-437614c0f048" LastKnownName="std::exception" />
+            <elementDefinition Id="45535006-fa77-4649-a3fb-4806e4ff5c9b" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e19e2c07-93fa-431b-82b4-027c1f9c0c5d" name="bad_optional_access" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="41a39bfa-e2bb-4cdc-8f31-147242b59a62" />
+        <generalsInternal>
+          <generalization Id="b5485633-27af-47a5-ab01-5a3de490971f" isSubstitutable="false">
+            <classMoniker Id="83de425b-c908-488c-be59-437614c0f048" LastKnownName="std::exception" />
+            <elementDefinition Id="83a0fc25-d73d-4a9a-8bd9-383061428693" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e58f0797-c1a7-40c2-955a-810806fe5166" name="bad_typeid" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b0ce35c6-ef8b-4ec6-a56e-2027d52af8ba" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="de26de83-7606-4f4a-bf11-dea00cae9c29" name="bad_weak_ptr" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c4770fa1-8ba6-49e5-81f2-fa3486f52c38" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0086e258-2d2b-4dc5-8502-416014e5d73c" name="bad_function_call" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bcd51299-d360-49b7-ab42-6411d5340438" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="68204b5d-7ce3-4670-b402-d81225b1e421" name="bad_variant_access" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="52bdc9de-39dc-407d-a433-84fe746bdf4f" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="83d17443-4c30-4612-969f-b57712bbf842" name="bad_any_cast" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b98ec911-1c9d-41c5-9f4c-525571e0b070" />
+        <generalsInternal>
+          <generalization Id="298f5883-8d5c-479c-9545-b22ccbf442c0" isSubstitutable="false">
+            <classMoniker Id="319402d2-447b-490d-b69d-3ad2afa39bda" LastKnownName="bad_cast" />
+            <elementDefinition Id="3bb58bc3-71fc-4f38-8ea2-f30d5381e6bd" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e496b7c0-50ed-4a48-bf91-cd9804929b8c" name="invalid_argument" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4e43a6c0-028c-4f23-afb4-e27d4cbe9eae" />
+        <generalsInternal>
+          <generalization Id="029157a3-9d62-4b0f-93f1-ffbc366d15e1" isSubstitutable="false">
+            <classMoniker Id="898a7085-652a-4879-96cb-7e88d845e071" LastKnownName="logic_error" />
+            <elementDefinition Id="027a7e26-e518-4f6b-9b1c-40c6700bb72d" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1d450125-e1c0-4b16-8a05-029d2c05848a" name="domain_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="daae4c64-5482-43b6-83de-29c7269029fe" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3c42d471-4bb0-484c-9088-250f9186dda4" name="length_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e5cbb1f1-9dea-4cee-8990-9b9942607a56" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c2fda907-bc82-45d1-a060-c6713a61adda" name="out_of_range" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="21a64432-38a3-4296-98df-0675dde40025" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4e219c70-f61b-4699-b07b-9ce8421f3921" name="future_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="dea9bb8c-a334-4186-a204-c4357d3790f2" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="35959fec-ddc1-415f-9681-a6e26a1039c7" name="range_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cabad625-11cd-4f5e-b941-90e784e3d734" />
+        <generalsInternal>
+          <generalization Id="39ab5403-9a3f-4e88-a888-9a7ff0e3479c" isSubstitutable="false">
+            <classMoniker Id="7ec7222b-a872-4cc6-8561-ccf47d8f71e7" LastKnownName="runtime_error" />
+            <elementDefinition Id="d951ad45-a0cb-4b9a-9da5-ddea9642d76d" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="06d4a36f-6ff3-44b9-b963-a387647720d0" name="overflow_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0616a465-72e0-46c6-87fc-b93eecb7a763" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d0b76556-e5f7-4dd1-a90e-2ceb3d141800" name="underflow_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c70e16a1-50b3-46c1-b25e-0cfb0c893a71" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="85c57567-47b9-429b-90ac-3a8e020ab4e9" name="regex_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4ca3e0f7-e995-4e47-a3fb-5dd4b2c1d45e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="adcd0f37-3108-4717-874c-26c8f9477338" name="format_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="59299d03-df31-4723-8233-1cbe23ed9343" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5895695b-a546-4480-946b-361bf329c3f7" name="bad_alloc" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="58a41c40-f797-4deb-8f38-6b2159c6f0c4" />
+        <generalsInternal>
+          <generalization Id="1fa77f2c-a587-4880-a837-f5718653cd24" isSubstitutable="false">
+            <classMoniker Id="83de425b-c908-488c-be59-437614c0f048" LastKnownName="std::exception" />
+            <elementDefinition Id="782d0e25-2b34-4796-823d-091a17f4b95b" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5d602582-a6f1-49a8-a178-3ef01d2db8ed" name="bad_exception" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="84f800a4-28d1-41ff-8e3c-c7f64f9c8a70" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ab1c6d7e-1f68-4ba1-b797-d08057e4a591" name="ios_base::failure" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8918cec8-8639-4f5e-b8e4-7c3949c38fbe" />
+        <generalsInternal>
+          <generalization Id="a29d120a-4c9f-4bf5-bf1b-39bcfdb75743" isSubstitutable="false">
+            <classMoniker Id="27177b51-dcb7-429b-a931-5a750a237fa8" LastKnownName="system_error" />
+            <elementDefinition Id="3fc98e11-7e0e-4cfa-9978-a420565b7fe3" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7b2c7f81-2fbc-4288-8940-3b3bf02756ce" name="filesystem::filesystem_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1f53e9be-cfd6-4e22-ae73-79249493a8cb" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="27177b51-dcb7-429b-a931-5a750a237fa8" name="system_error" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b8a6209c-9ade-434b-84b5-f32a38500e32" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="319402d2-447b-490d-b69d-3ad2afa39bda" name="bad_cast" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e1783e14-4b4a-400d-90e4-ee50f6547d7c" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="2c594c68-5540-4719-a4cf-014ddfd9b5f7" name="exception">
+    <elementDefinition Id="67aed330-3fbe-4463-89fb-62f1ef4f5e96" />
+    <profileInstances>
+      <packageHasProfileInstances Id="fcc6a124-8769-4cf6-a49f-ffc2efc76b51">
+        <profileInstance Id="c83199e5-70f0-41ed-9d43-bbd0a02ac662" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="3757319a-0c12-410f-a5ba-1bc0659a775e">
+        <profileInstance Id="325c858d-9e81-4d7f-9815-ef1a39af2698" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

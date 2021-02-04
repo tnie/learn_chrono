@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="67aed330-3fbe-4463-89fb-62f1ef4f5e96"
+  name="exception" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="9097c19f-d2af-4ff4-886b-5bded79283d3"
+        name="std::exception"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8f702450-c659-4854-9d3e-8af341ef7c1b"
+        name="logic_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="8f701fbf-d402-4ffb-81ea-2dc481b14234"
+            isSubstitutable="false">
+            <classMoniker
+              Id="9097c19f-d2af-4ff4-886b-5bded79283d3"
+              LastKnownName="std::exception"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="dafa8397-5fd4-4418-9ad5-b583425f459a"
+        name="runtime_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="45535006-fa77-4649-a3fb-4806e4ff5c9b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="9097c19f-d2af-4ff4-886b-5bded79283d3"
+              LastKnownName="std::exception"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="41a39bfa-e2bb-4cdc-8f31-147242b59a62"
+        name="bad_optional_access"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="83a0fc25-d73d-4a9a-8bd9-383061428693"
+            isSubstitutable="false">
+            <classMoniker
+              Id="9097c19f-d2af-4ff4-886b-5bded79283d3"
+              LastKnownName="std::exception"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b0ce35c6-ef8b-4ec6-a56e-2027d52af8ba"
+        name="bad_typeid"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9c934250-1ce5-4ab1-bf02-ed7e6a47565e"
+        name="bad_cast"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c4770fa1-8ba6-49e5-81f2-fa3486f52c38"
+        name="bad_weak_ptr"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="bcd51299-d360-49b7-ab42-6411d5340438"
+        name="bad_function_call"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="52bdc9de-39dc-407d-a433-84fe746bdf4f"
+        name="bad_variant_access"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b98ec911-1c9d-41c5-9f4c-525571e0b070"
+        name="bad_any_cast"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="227adc6b-1238-4083-94ad-10ab0cccb543"
+            isSubstitutable="false">
+            <classMoniker
+              Id="9c934250-1ce5-4ab1-bf02-ed7e6a47565e"
+              LastKnownName="bad_cast"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+          <generalization
+            Id="3bb58bc3-71fc-4f38-8ea2-f30d5381e6bd"
+            isSubstitutable="false">
+            <classMoniker
+              Id="e1783e14-4b4a-400d-90e4-ee50f6547d7c"
+              LastKnownName="bad_cast"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4e43a6c0-028c-4f23-afb4-e27d4cbe9eae"
+        name="invalid_argument"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="027a7e26-e518-4f6b-9b1c-40c6700bb72d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="8f702450-c659-4854-9d3e-8af341ef7c1b"
+              LastKnownName="logic_error"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="daae4c64-5482-43b6-83de-29c7269029fe"
+        name="domain_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e5cbb1f1-9dea-4cee-8990-9b9942607a56"
+        name="length_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="21a64432-38a3-4296-98df-0675dde40025"
+        name="out_of_range"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="dea9bb8c-a334-4186-a204-c4357d3790f2"
+        name="future_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="cabad625-11cd-4f5e-b941-90e784e3d734"
+        name="range_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="d951ad45-a0cb-4b9a-9da5-ddea9642d76d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="dafa8397-5fd4-4418-9ad5-b583425f459a"
+              LastKnownName="runtime_error"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0616a465-72e0-46c6-87fc-b93eecb7a763"
+        name="overflow_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c70e16a1-50b3-46c1-b25e-0cfb0c893a71"
+        name="underflow_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4ca3e0f7-e995-4e47-a3fb-5dd4b2c1d45e"
+        name="regex_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7ce8e222-8a06-4f61-a032-1c6d65f1861f"
+        name="system_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="59299d03-df31-4723-8233-1cbe23ed9343"
+        name="format_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="58a41c40-f797-4deb-8f38-6b2159c6f0c4"
+        name="bad_alloc"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="782d0e25-2b34-4796-823d-091a17f4b95b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="9097c19f-d2af-4ff4-886b-5bded79283d3"
+              LastKnownName="std::exception"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="84f800a4-28d1-41ff-8e3c-c7f64f9c8a70"
+        name="bad_exception"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8918cec8-8639-4f5e-b8e4-7c3949c38fbe"
+        name="ios_base::failure"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="3fc98e11-7e0e-4cfa-9978-a420565b7fe3"
+            isSubstitutable="false">
+            <classMoniker
+              Id="b8a6209c-9ade-434b-84b5-f32a38500e32"
+              LastKnownName="system_error"
+              LastKnownLocation="exception.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1f53e9be-cfd6-4e22-ae73-79249493a8cb"
+        name="filesystem::filesystem_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b8a6209c-9ade-434b-84b5-f32a38500e32"
+        name="system_error"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e1783e14-4b4a-400d-90e4-ee50f6547d7c"
+        name="bad_cast"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>
