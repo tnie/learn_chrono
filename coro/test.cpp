@@ -17,7 +17,7 @@ Task Add100Coroutine(int a)
     co_return;
 }
 
-int mainx()
+int main()
 {
     for (size_t i = 0; i < 1; i++)
     {
