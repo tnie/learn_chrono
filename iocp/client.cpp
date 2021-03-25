@@ -15,7 +15,7 @@ using namespace std;
 
 SOCKET sockClient;		// 连接成功后的套接字
 HANDLE bufferMutex;		// 令其能互斥成功正常通信的信号量句柄
-const int DefaultPort = 6000;
+const int DefaultPort = 55555;
 
 int main()
 {
@@ -103,7 +103,7 @@ DWORD WINAPI SendMessageThread(LPVOID IpParameter)
         WaitForSingleObject(bufferMutex, INFINITE);		// P（资源未被占用）
         if ("quit" == talk) {
             talk.push_back('\0');
-            send(sockClient, talk.c_str(), 200, 0);
+            send(sockClient, talk.c_str(), talk.size(), 0);
             break;
         }
         else {
@@ -111,7 +111,7 @@ DWORD WINAPI SendMessageThread(LPVOID IpParameter)
         }
         printf("\nI Say:(\"quit\"to exit):");
         cout << talk;
-        send(sockClient, talk.c_str(), 200, 0);	// 发送信息
+        send(sockClient, talk.c_str(), talk.size(), 0);	// 发送信息
         ReleaseSemaphore(bufferMutex, 1, NULL);		// V（资源占用完毕）
     }
     return 0;
