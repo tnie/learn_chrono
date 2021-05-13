@@ -42,6 +42,15 @@ because the this pointer may no longer be valid.";
     }
 };
 
+struct resume_new_thread : std::experimental::suspend_always
+{
+    void await_suspend(
+        std::experimental::coroutine_handle<> handle)
+    {
+        std::thread([handle] { handle.resume(); }).detach();
+    }
+};
+
 // 协程的返回值，用于和协程交互（比如恢复执行）
 // 为了简单，协程的返回值只实现要求的接口，但什么功能都不做。见 Task 定义
 Task simplest_coro()
@@ -54,10 +63,13 @@ Task simplest_coro()
     co_await awaiter();
     spdlog::info("The entire function have run to completion!");
 
+    co_await resume_new_thread();
+    spdlog::info("Pay attention to thread id. your coroutine resumes in a new thread. ");
 }
 
 int main()
 {
+    spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%t] [%^%l%$] %v");
     simplest_coro();
     return 0;
     for (size_t i = 0; i < 1; i++)
